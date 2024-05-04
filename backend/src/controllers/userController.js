@@ -60,33 +60,6 @@ const updateFotoPerfil = async (req, res) => {
     }
 };
 
-
-const addDefaultProfilePhoto = async (userId) => {
-    try {
-        // Verifica se o usuário existe
-        const user = await User.findById(userId);
-        if (!user) {
-            console.error('Usuário não encontrado');
-            return;
-        }
-
-        // Verifica se o usuário já possui uma foto de perfil
-        if (user.fotoPerfil) {
-            console.log('Usuário já possui uma foto de perfil');
-            return;
-        }
-
-        // Adiciona uma foto de perfil padrão
-        const defaultPhotoPath = 'C:/Users/User/OneDrive/Área de Trabalho/MyGallery/backend/src/upload/foto-user/user_icon-icons.com_66546.png'; // Coloque o caminho para a foto padrão aqui
-        user.fotoPerfil = defaultPhotoPath;
-        await user.save();
-
-        console.log('Foto de perfil padrão adicionada para o usuário:', userId);
-    } catch (error) {
-        console.error('Erro ao adicionar foto de perfil padrão:', error);
-    }
-};
-
 const removeFotoPerfil = async (req, res) => {
     try {
         // Obtém o ID do usuário autenticado a partir do token
@@ -134,4 +107,4 @@ const getAccount = async (req, res) => {
 }
 
 
-module.exports = { updateBiografia, updateFotoPerfil, addDefaultProfilePhoto, removeFotoPerfil, getAccount };
+module.exports = { updateBiografia, updateFotoPerfil, removeFotoPerfil, getAccount };

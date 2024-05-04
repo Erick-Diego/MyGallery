@@ -2,11 +2,12 @@ const express = require('express');
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/middleware');
+const uploadProfilePhoto = require('../middleware/uploadPhoto');
 const admController = require('../controllers/admController');
 
 const router = express.Router();
 
-router.post('/register', authController.register);
+router.post('/register', uploadProfilePhoto.single('fotoPerfil'), authController.register);
 router.post('/login', authController.login);
 router.post('/logout', authMiddleware.authenticateToken, authController.logout);
 
@@ -18,17 +19,5 @@ router.delete('/delete-account', authMiddleware.authenticateToken, authControlle
 
 router.get('/all-users', admController.getAllAccount);
 router.get('/user', authMiddleware.authenticateToken, userController.getAccount);
-
-
-//para limpar do lado do cliente usar:
-
-// Limpar token do localStorage
-// localStorage.removeItem('token');
-
-// Limpar token do sessionStorage
-// sessionStorage.removeItem('token');
-
-// Limpar token de um cookie (se você estiver usando cookies)
-// document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
 module.exports = router;

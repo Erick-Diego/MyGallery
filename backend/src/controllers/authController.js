@@ -11,21 +11,42 @@ const register = async (req, res) => {
             return res.status(400).json({ message: 'Email já cadastrado' });
         }
         
+        if(req.body.senha !== req.body.senha2){
+            return res.status(400).json({ message: 'Senha e Confirmação diferentes' });
+        }
+
         // Criptografar senha
         const hashedPassword = await bcrypt.hash(req.body.senha, 10);
         
         // Salvar usuário no banco de dados
-        const user = await User.create({
-            nome: req.body.nome,
-            email: req.body.email,
-            senha: hashedPassword,
-            biografia: req.body.biografia
-        });
+        let user;
 
-        // Adicionar foto de perfil padrão
-        await addDefaultProfilePhoto(user._id);
+        // Verificar se o usuário forneceu uma foto de perfil
+        if (req.file) {
+            user = await User.create({
+                nome: req.body.nome,
+                email: req.body.email,
+                senha: hashedPassword,
+                fotoPerfil: req.file.path,
+                biografia: req.body.biografia
+            });
+        } else {
+            // Se não fornecer, adicionar a foto de perfil padrão
+            const defaultPhotoPath = 'C:/Users/User/OneDrive/Área de Trabalho/MyGallery/backend/src/upload/foto-user/user_icon-icons.com_66546.png';
+            user = await User.create({
+                nome: req.body.nome,
+                email: req.body.email,
+                senha: hashedPassword,
+                fotoPerfil: defaultPhotoPath,
+                biografia: req.body.biografia
+            });
+        }
 
-        res.status(201).json({ user });
+        // Gerar token de autenticação
+        const token = jwt.sign({ id: user._id }, 'my_secret_key');
+
+        res.status(201).json({ token, user });
+        
         console.log("\n Usuario Cadastrado com Sucesso!");
     } catch (error) {
         res.status(500).json({ message: error.message });

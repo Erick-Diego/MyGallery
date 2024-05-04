@@ -1,10 +1,12 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Login from './pages/auth/login/Login';
 import Register from './pages/auth/register/Register';
 import User from './pages/user/User';
+import Principal from './pages/Principal/Principal';
 import { GlobalStyle } from './global';
+import NotFound from './pages/404/NotFound';
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
           <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/user' element={<User/>} />
+          <Route path='/principal' element={<Principal/>} />
+          <Route path='/not-found' element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
       <GlobalStyle/>
