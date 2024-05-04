@@ -1,10 +1,12 @@
-import React from 'react'
-import { Title } from './styles'
+import React from 'react';
+import { Title } from './styles';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
     <>
-        <Title>Login</Title>
+      <Title>Login</Title>
+      <Link to='/'>Voltar</Link>
     </>
   )
 }

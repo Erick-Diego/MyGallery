@@ -1,10 +1,10 @@
-import React from 'react'
-import { Title } from './styles'
+import React from 'react';
+import { Title } from './styles';
 
 const Footer = () => {
   return (
     <>
-        <Title>Footer</Title>
+      <Title>Footer</Title>
     </>
   )
 }
