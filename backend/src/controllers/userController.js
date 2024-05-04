@@ -117,6 +117,21 @@ const removeFotoPerfil = async (req, res) => {
     }
 };
 
+const getAccount = async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const user = await User.findById(userId);
+
+        if(!user){
+            return res.status(404).json({ message: 'Usuarios não encontrado' });
+        }
+
+        res.status(200).json({ user });
+    } catch (error) {
+        return res.status(403).json({ message: 'Erro ao procurar usuario' });
+    }
+}
 
 
-module.exports = { updateBiografia, updateFotoPerfil, addDefaultProfilePhoto, removeFotoPerfil };
+module.exports = { updateBiografia, updateFotoPerfil, addDefaultProfilePhoto, removeFotoPerfil, getAccount };

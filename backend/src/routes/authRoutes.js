@@ -1,7 +1,8 @@
 const express = require('express');
 const authController = require('../controllers/authController');
-const userController = require('../controllers/userController'); // Importe o userController
+const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/middleware');
+const admController = require('../controllers/admController');
 
 const router = express.Router();
 
@@ -14,6 +15,9 @@ router.patch('/update-foto-perfil', authMiddleware.authenticateToken, userContro
 
 router.delete('/remove-foto-perfil', authMiddleware.authenticateToken, userController.removeFotoPerfil);
 router.delete('/delete-account', authMiddleware.authenticateToken, authController.deleteAccount);
+
+router.get('/all-users', admController.getAllAccount);
+router.get('/user', authMiddleware.authenticateToken, userController.getAccount);
 
 
 //para limpar do lado do cliente usar:
