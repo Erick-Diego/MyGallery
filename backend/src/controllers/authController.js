@@ -25,7 +25,7 @@ const register = async (req, res) => {
                 biografia: req.body.biografia
             });
         } else {
-            const defaultPhotoPath = 'C:/Users/User/OneDrive/Área de Trabalho/MyGallery/backend/src/upload/foto-user/user_icon-icons.com_66546.png';
+            const defaultPhotoPath = 'user_icon-icons.com_66546.png';
             user = await User.create({
                 nome: req.body.nome,
                 email: req.body.email,
@@ -116,4 +116,15 @@ const deleteAccount = async (req, res) => {
     }
 };
 
-module.exports = { register, login, logout, authenticateToken, deleteAccount };
+const getImage = async = (req,res) => {
+    try {
+        const imageName = req.params.imageName;
+
+        const imageURL = `http://localhost:3333/profile-images/${imageName}`;
+        res.json({ imageURL });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+module.exports = { register, login, logout, authenticateToken, deleteAccount, getImage };

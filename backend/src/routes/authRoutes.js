@@ -19,5 +19,6 @@ router.delete('/delete-account', authMiddleware.authenticateToken, authControlle
 
 router.get('/all-users', admController.getAllAccount);
 router.get('/user', authMiddleware.authenticateToken, userController.getAccount);
+router.get('/user-profile-image/:imageName', authController.getImage);
 
 module.exports = router;
