@@ -8,14 +8,13 @@ const getUserInfo = async () => {
       throw new Error('Token de autenticação não encontrado');
     }
 
-    // Define os cabeçalhos da requisição com o token de autenticação
     const headers = {
       Authorization: `Bearer ${token}`
     };
 
     const response = await epi.get('/user', { headers });
 
-    return response.data;
+    return response.data.user; // Retorna apenas os dados do usuário
   } catch (error) {
     throw error;
   }

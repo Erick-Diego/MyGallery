@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Title, ConteinerForm, ConteinerFoto, FotoPerfil, ButtonAddFoto  } from './styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import fotobase from '../../../../../backend/src/upload/foto-user/user_icon-icons.com_66546.png';
-import epi from '../../../services/epi'
-
+import epi from '../../../services/epi';
+ 
 const Register = () => {
   const [ name, setName ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ password2, setPassword2 ] = useState('');
   const [ photo, setFotoPerfil] = useState(null);
+  const navigate = useNavigate();
 
   async function handleSubmit(e){
     e.preventDefault();
@@ -30,8 +31,12 @@ const Register = () => {
     setPassword2('')
     setFotoPerfil(null);
 
-    alert("Conta criada com sucesso!");
+    localStorage.setItem('token', response.data.token);
+    const shouldRedirect = true;
 
+      if (shouldRedirect) {
+        navigate('/principal');
+      }
   };
 
   const handleFotoPerfilChange = (e) => {
