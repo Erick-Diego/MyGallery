@@ -4,11 +4,13 @@ const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/middleware');
 const uploadProfilePhoto = require('../middleware/uploadPhoto');
 const admController = require('../controllers/admController');
+const multer = require('multer');
 
+const upload = multer();
 const router = express.Router();
 
 router.post('/register', uploadProfilePhoto.single('fotoPerfil'), authController.register);
-router.post('/login', authController.login);
+router.post('/login', upload.none(), authController.login);
 router.post('/logout', authMiddleware.authenticateToken, authController.logout);
 
 router.patch('/update-biografia', authMiddleware.authenticateToken, userController.updateBiografia);

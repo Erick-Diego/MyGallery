@@ -13,18 +13,14 @@ const Principal = () => {
     const fetchUserInfo = async () => {
       try {
         const user = await getUserInfo();
-        console.log('Dados do usuário recebidos:', user);
         if (user && Object.keys(user).length !== 0) {
           setUserInfo(user);
-
           if (user.fotoPerfil) {
             const fileName = user.fotoPerfil.split('\\').pop();
-
             const response = await epi.get(`user-profile-image/${fileName}`);
             setUserProfileImageURL(response.data.imageURL);
           }
         } else {
-          console.log('Nenhum dado de usuário recebido');
           navigate('/not-found');
         }
       } catch (error) {
