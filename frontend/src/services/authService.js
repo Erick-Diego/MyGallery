@@ -13,8 +13,7 @@ const getUserInfo = async () => {
     };
 
     const response = await epi.get('/user', { headers });
-
-    return response.data.user; // Retorna apenas os dados do usuário
+    return response.data.user;
   } catch (error) {
     throw error;
   }

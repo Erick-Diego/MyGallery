@@ -48,22 +48,48 @@ const Register = () => {
     <>
       <Title>Register</Title>
       <Link to='/'>Voltar</Link>
-
       <ConteinerForm>
         <form onSubmit={handleSubmit}>
           <ConteinerFoto>
           <FotoPerfil><img src={photo ? URL.createObjectURL(photo) : fotobase} alt="" /></FotoPerfil>
             <ButtonAddFoto>
               <label htmlFor="foto">
-                <input type="file" name="foto" id="foto" onChange={handleFotoPerfilChange} />
+                <input 
+                  type="file" 
+                  name="foto" 
+                  id="foto" 
+                  onChange={handleFotoPerfilChange} />
               </label>
             </ButtonAddFoto>  
           </ConteinerFoto>
-          <input type="text" name="nome" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} />
-          <input type="email" name="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-          <input type="password" name="senha" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} />
-          <input type="password" name="senha2" placeholder="Confirmar Senha" value={password2} onChange={e => setPassword2(e.target.value)} />
-
+          <input 
+            type="text" 
+            name="nome" 
+            placeholder="Nome" 
+            value={name} 
+            onChange={e => setName(e.target.value)} 
+          />
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            value={email} 
+            onChange={e => setEmail(e.target.value)} 
+          />
+          <input 
+            type="password" 
+            name="senha" 
+            placeholder="Senha" 
+            value={password} 
+            onChange={e => setPassword(e.target.value)} 
+          />
+          <input 
+            type="password" 
+            name="senha2" 
+            placeholder="Confirmar Senha" 
+            value={password2} 
+            onChange={e => setPassword2(e.target.value)} 
+            />
           <button type="submit">Cadastrar</button>
         </form>
       </ConteinerForm>  
@@ -71,4 +97,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Register;

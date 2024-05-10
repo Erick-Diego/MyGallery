@@ -18,7 +18,7 @@ const App = () => {
           <Route path='/register' element={<Register/>} />
           <Route path='/user' element={<User/>} />
           <Route path='/principal' element={<Principal/>} />
-          <Route path='/not-found' element={<NotFound/>} />
+          <Route path='*' element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
       <GlobalStyle/>
