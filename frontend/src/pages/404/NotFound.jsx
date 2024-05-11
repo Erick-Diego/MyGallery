@@ -1,8 +1,11 @@
 import React from 'react'
+import { NotFoundPage, Title } from './styles';
 
 const NotFound = () => {
   return (
-    <div>NotFound</div>
+    <NotFoundPage>
+      <Title>Not Found This Page...</Title>
+    </NotFoundPage>
   )
 }
 
