@@ -28,7 +28,11 @@ export const ConteinerSocialMidias = styled.ul`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 20px;
+
+    a{
+        color: black;
+    }
 `;
 
 export const Title = styled.h1`

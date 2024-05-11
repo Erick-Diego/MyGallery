@@ -11,6 +11,8 @@ import {
   ConteinerMidFooter,
   ConteinerBottom
 } from './styles';
+import { FiInstagram, FiFacebook, FiLinkedin   } from "react-icons/fi";
+import { BsTwitterX } from "react-icons/bs";
 
 const Footer = () => {
   return (
@@ -21,10 +23,26 @@ const Footer = () => {
           <ConteinerTopFooter>
             <Title>MyGallery</Title>
             <ConteinerSocialMidias>
-              <li>😀</li>
-              <li>😁</li>
-              <li>😂</li>
-              <li>🤣</li>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <FiInstagram/>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <FiFacebook/>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <FiLinkedin/>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <BsTwitterX/>
+                </a>
+              </li>
             </ConteinerSocialMidias> 
           </ConteinerTopFooter>
           <Horizontalline/>  
